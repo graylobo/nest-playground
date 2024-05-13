@@ -4,9 +4,13 @@ import { AuthController } from './auth.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'src/entities/user.entity';
+import { Token } from 'src/entities/token.entity';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([User, Token]),
     PassportModule,
     JwtModule.register({
       secret: 'your-secret-key',
